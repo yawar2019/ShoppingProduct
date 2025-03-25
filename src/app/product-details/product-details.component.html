@@ -1,0 +1,42 @@
+<p>product-details works!</p>
+
+
+
+<table class="table table-border">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <!-- <th>Action</th> -->
+    </tr>
+    <tr *ngFor="let Product of service.AllProducts">
+        <td>{{Product._id}}</td>
+        <td>{{Product.name}}</td>
+        <td>{{Product.price}}</td>
+        <td>{{Product.image}}</td>
+        <td>
+            <a class="btn btn-primary btn-sm" 
+            (click)="ProductEdit(Product._id)">Edit</a>|
+            <a class="btn btn-danger btn-sm" (click)="ProductDelete(Product._id)">Delete</a>
+        </td>
+    </tr>
+</table>    
+
+<br>
+
+<form #productForm="ngForm">
+    <input type="hidden" name="_id" [(ngModel)]="service.Product._id" [value]="service.Product._id">
+    <label>Name</label>
+    <input type="text" name="name" [(ngModel)]="service.Product.name" [value]="service.Product.name"><br>
+
+    <label>Price</label>
+    <input type="text" name="price" [(ngModel)]="service.Product.price" [value]="service.Product.price"><br>
+    
+    <label>Image</label>
+    <input type="text" name="image" [(ngModel)]="service.Product.image" [value]="service.Product.image"><br>
+    
+
+
+    <input type="button" (click)="ProductAdd(productForm.value)" class="btn btn-success" value="Save" />
+</form>
